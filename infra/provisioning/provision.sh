@@ -7,4 +7,7 @@ echo "cd $WORK_DIR" >> /home/vagrant/.bashrc
 
 # install packages
 apt update
+apt upgrade -y
+#apt install -y php
 #apt install -y nodejs
+#apt install -y npm
