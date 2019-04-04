@@ -3,7 +3,7 @@
 PROJECT_DIR=/var/DEFAULT-PROJECT
 
 GIT_USER_NAME="Mihai Tmf"
-GIT_USER_EMAIL=mihai.tmf@gmail.com
+GIT_USER_EMAIL="mihai.tmf@gmail.com"
 
 apt update
 apt install -y git
