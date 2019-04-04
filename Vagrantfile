@@ -57,6 +57,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vm_config.vm.provision 'docker'
 
     vm_config.vm.provision 'bootstrap', type: 'shell', run: 'once', path: 'infra/provisioning/bootstrap.sh'
+    vm_config.vm.provision 'git-config', type: 'shell', run: 'once', path: 'infra/provisioning/git-config.sh'
     vm_config.vm.provision 'install-packages', type: 'shell', run: 'once', path: 'infra/provisioning/install-packages.sh'
   end
 end
