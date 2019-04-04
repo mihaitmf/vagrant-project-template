@@ -2,8 +2,7 @@
 
 PROJECT_DIR=/var/DEFAULT-PROJECT
 
-GIT_USER_NAME="Mihai Tmf"
-GIT_USER_EMAIL="mihai.tmf@gmail.com"
+source ${PROJECT_DIR}/.dev/provisioning/git-config.env
 
 apt update
 apt install -y git
