@@ -26,3 +26,6 @@ cat >> ${WORK_DIR}/.gitignore <<EOL
 /*.log
 /.vagrant/
 EOL
+
+# Add .gitattributes and .gitignore files to staging area
+(cd ${WORK_DIR}; git add .)
