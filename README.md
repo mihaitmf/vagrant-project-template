@@ -2,11 +2,11 @@
 Template for new Vagrant projects
 
 ## Quick start
-0. Copy `Vagrantfile` and `.dev` directory to your new project directory 
-0. Update `Vagrantfile` and replace `DEFAULT-PROJECT` with your **project name**
-0. Search in the `provisioning` directory and replace all occurrences of `DEFAULT-PROJECT` with your **project name**
-0. Create a copy of the `git-config.env.dist` file with the name `git-config.env` and set your **git** user **name** and **email** in it 
-0. Run `vagrant up`
+1. Copy `Vagrantfile` and `.dev` directory to your new project directory 
+1. Update `Vagrantfile` and replace `DEFAULT-PROJECT` with your **project name**
+1. Search in the `provisioning` directory and replace all occurrences of `DEFAULT-PROJECT` with your **project name**
+1. Create a copy of the `git-config.env.dist` file with the name `git-config.env` and set your **git** user **name** and **email** in it 
+1. Run `vagrant up`
 
 ### Vagrant provisioners
 To run just a separate provisioner:
