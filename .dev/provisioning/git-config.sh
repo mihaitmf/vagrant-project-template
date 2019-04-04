@@ -14,10 +14,10 @@ When text=auto conversion is enabled in a cross-platform project using push and 
 files containing CRLFs should be normalized.
 When a text file is normalized, its line endings are converted to LF in the repository.
 '
-echo "* text=auto eol=lf" >> ${WORK_DIR}/.gitattributes
+echo "* text=auto eol=lf" > ${WORK_DIR}/.gitattributes
 
 # Add .gitignore file
-cat >> ${WORK_DIR}/.gitignore <<EOL
+cat > ${WORK_DIR}/.gitignore <<EOL
 # IntelliJ project files
 /.idea/
 /*.iml
