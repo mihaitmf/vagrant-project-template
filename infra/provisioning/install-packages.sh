@@ -40,4 +40,8 @@ curl -sS https://getcomposer.org/installer -o composer-setup.php && php composer
 #node -v
 #npm -v
 
-#apt install -y npm
+# Install python and pip
+#apt install -y python python3 python-pip
+#python -V
+#python3 -V
+#pip -V
