@@ -32,7 +32,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.hostmanager.aliases = "#{project_name}.local"
   end
 
-  # Set auto_update to false, if you do NOT want to check the correct additions version when booting VM's
+  # Set auto_update to false, if you do NOT want to check the correct virtual-box-guest-additions version when booting VM
   if Vagrant.has_plugin?('vagrant-vbguest')
     config.vbguest.auto_update = false
   end
