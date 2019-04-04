@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
-source ${PROJECT_DIR}/config.env
+PROJECT_DIR=/var/DEFAULT-PROJECT
+
+GIT_USER_NAME="Mihai Tmf"
+GIT_USER_EMAIL=mihai.tmf@gmail.com
 
 apt update
 apt install -y git
@@ -28,4 +31,4 @@ cat > ${PROJECT_DIR}/.gitignore <<EOL
 EOL
 
 # Add .gitattributes and .gitignore files to staging area
-(cd ${PROJECT_DIR}; git add .)
+(cd ${PROJECT_DIR}; git add .gitignore .gitattributes)
