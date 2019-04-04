@@ -25,7 +25,19 @@ source /etc/profile.d/apache-maven.sh
 #echo $JAVA_HOME
 #echo $M2
 
+# Install php and composer
+: '
+apt install -y php
+apt install -y php-curl php-json php-xml php-soap php-bcmath php-gd php-mbstring php-readline php-apcu php-memcached php-xdebug
+curl -sS https://getcomposer.org/installer -o composer-setup.php && php composer-setup.php --install-dir=/usr/local/bin --filename=composer && rm composer-setup.php
+'
+#php -v
+#systemctl status apache2
+#composer -V
 
-#apt install -y php
-#apt install -y nodejs
+# Install node.js and npm
+#apt install -y nodejs npm
+#node -v
+#npm -v
+
 #apt install -y npm
