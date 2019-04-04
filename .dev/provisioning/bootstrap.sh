@@ -22,4 +22,7 @@ cat > ${PROJECT_DIR}/.gitignore <<EOL
 # Vagrant files
 /*.log
 /.vagrant/
+
+# Git config env file
+git-config.env
 EOL
