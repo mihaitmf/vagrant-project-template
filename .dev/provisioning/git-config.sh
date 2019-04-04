@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-WORK_DIR=/var/DEFAULT-PROJECT
+source ${PROJECT_DIR}/config.env
 
 apt update
 apt install -y git
 
 # Config git user
-(cd ${WORK_DIR}; git config user.name "mihaitmf" && git config user.email mihai.tmf@gmail.com)
+(cd ${PROJECT_DIR}; git config user.name "${GIT_USER_NAME}" && git config user.email ${GIT_USER_EMAIL})
 
 # Add .gitattributes file
 : '
@@ -14,10 +14,10 @@ When text=auto conversion is enabled in a cross-platform project using push and 
 files containing CRLFs should be normalized.
 When a text file is normalized, its line endings are converted to LF in the repository.
 '
-echo "* text=auto eol=lf" > ${WORK_DIR}/.gitattributes
+echo "* text=auto eol=lf" > ${PROJECT_DIR}/.gitattributes
 
 # Add .gitignore file
-cat > ${WORK_DIR}/.gitignore <<EOL
+cat > ${PROJECT_DIR}/.gitignore <<EOL
 # IntelliJ project files
 /.idea/
 /*.iml
@@ -28,4 +28,4 @@ cat > ${WORK_DIR}/.gitignore <<EOL
 EOL
 
 # Add .gitattributes and .gitignore files to staging area
-(cd ${WORK_DIR}; git add .)
+(cd ${PROJECT_DIR}; git add .)
