@@ -3,9 +3,7 @@ Template for new Vagrant projects
 
 ## Quick start
 1. Copy `Vagrantfile` and `.dev` directory to your new project directory 
-1. Update `Vagrantfile` and replace `DEFAULT-PROJECT` with your **project name**
-1. Search in the `provisioning` directory and replace all occurrences of `DEFAULT-PROJECT` with your **project name**
-1. Create a copy of the `git-config.env.dist` file with the name `git-config.env` and set your **git** user **name** and **email** in it 
+1. Create a copy of the `config.yml.dist` file with the name `config.yml` and set your desired properties (ex: project name, project root path, git user name and email etc.) 
 1. Run `vagrant up`
 
 ### Vagrant provisioners
@@ -15,7 +13,7 @@ To run just a separate provisioner:
 - Example: `vagrant provision --provision-with install-packages`
 
 ### Git config
-Git user name and email are configured in the `config.env` file.
+Git user name and email are configured in the `config.yml` file.
 
 Default versions of `.gitignore` and `.gitattributes` files are auto-generated.
 
