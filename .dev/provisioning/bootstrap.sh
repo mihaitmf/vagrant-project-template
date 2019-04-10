@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-PROJECT_DIR=/var/DEFAULT-PROJECT
+PROJECT_DIR=${1}
 
 # Set working directory after vagrant ssh
 echo "cd $PROJECT_DIR" >> /home/vagrant/.bashrc
