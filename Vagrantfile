@@ -8,7 +8,7 @@ VAGRANTFILE_API_VERSION = '2'
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   project_name = 'DEFAULT-PROJECT'
-  machine_ip_address = '192.168.3.10'
+  machine_ip_address = '192.168.89.103'
 
   required_plugins = %w(vagrant-vbguest vagrant-hostmanager)
 
