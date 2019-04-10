@@ -23,6 +23,6 @@ cat > ${PROJECT_DIR}/.gitignore <<EOL
 /*.log
 /.vagrant/
 
-# Git config env file
-git-config.env
+# Config YAML file
+/.dev/config.yml
 EOL
