@@ -17,6 +17,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   PROJECT_DIR = project_config['vagrant']['project-root-dir'] + PROJECT_NAME
   MACHINE_IP_ADDRESS = project_config['vagrant']['machine-ip-address']
   VAGRANT_BOX_NAME = project_config['vagrant']['box-name']
+  GIT_USER_NAME = project_config['git']['name']
+  GIT_USER_EMAIL = project_config['git']['email']
 
   # Install plugins if missing
   required_plugins = %w(vagrant-vbguest vagrant-hostmanager)
@@ -64,7 +66,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     # vm_config.vm.provision 'docker'
     vm_config.vm.provision 'bootstrap', type: 'shell', run: 'once', args: PROJECT_DIR, path: '.dev/provisioning/bootstrap.sh'
-    vm_config.vm.provision 'git-config', type: 'shell', run: 'once', path: '.dev/provisioning/git-config.sh'
+    vm_config.vm.provision 'git-config', type: 'shell', run: 'once', args: [PROJECT_DIR, GIT_USER_NAME, GIT_USER_EMAIL], path: '.dev/provisioning/git-config.sh'
     vm_config.vm.provision 'install-packages', type: 'shell', run: 'once', path: '.dev/provisioning/install-packages.sh'
   end
 end

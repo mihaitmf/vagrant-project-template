@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-PROJECT_DIR=/var/DEFAULT-PROJECT
+PROJECT_DIR=${1}
+GIT_USER_NAME=${2}
+GIT_USER_EMAIL=${3}
 
 source ${PROJECT_DIR}/.dev/provisioning/git-config.env
 
