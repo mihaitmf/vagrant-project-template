@@ -1,18 +1,18 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+require 'yaml'
+
 Vagrant.require_version '>= 2.1'
 
 VAGRANTFILE_API_VERSION = '2'
 
-# Read YAML config
-require 'yaml'
-host_project_dir = File.dirname(__FILE__)
-project_config = YAML.load_file("#{host_project_dir}/.dev/config.yml")
-
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-  # Get configurable properties
+  # Read YAML config
+  host_project_dir = File.dirname(__FILE__)
+  project_config = YAML.load_file("#{host_project_dir}/.dev/config.yml")
+
   PROJECT_NAME = project_config['vagrant']['project-name']
   PROJECT_DIR = project_config['vagrant']['project-root-dir'] + PROJECT_NAME
   MACHINE_IP_ADDRESS = project_config['vagrant']['machine-ip-address']
