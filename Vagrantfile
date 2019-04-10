@@ -7,8 +7,8 @@ VAGRANTFILE_API_VERSION = '2'
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-  project_name = 'DEFAULT-PROJECT'
-  machine_ip_address = '192.168.89.103'
+  PROJECT_NAME = 'default-project-name'
+  MACHINE_IP_ADDRESS = '192.168.89.103'
 
   required_plugins = %w(vagrant-vbguest vagrant-hostmanager)
 
@@ -29,7 +29,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.hostmanager.manage_host = true
     config.hostmanager.manage_guest = true
     config.hostmanager.ignore_private_ip = false
-    config.hostmanager.aliases = "#{project_name}.local"
+    config.hostmanager.aliases = "#{PROJECT_NAME}.local"
   end
 
   # Set auto_update to false, if you do NOT want to check the correct virtual-box-guest-additions version when booting VM
@@ -37,22 +37,22 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vbguest.auto_update = false
   end
 
-  config.vm.define "#{project_name}-vagrant", primary: true do |vm_config|
+  config.vm.define "#{PROJECT_NAME}-vagrant", primary: true do |vm_config|
     vm_config.vm.box = 'ubuntu/bionic64'
     vm_config.vm.box_check_update = true
-    vm_config.vm.network 'private_network', ip: machine_ip_address
+    vm_config.vm.network 'private_network', ip: MACHINE_IP_ADDRESS
     vm_config.vm.provider 'virtualbox' do |vb|
-      vb.name = "#{project_name}-VM"
+      vb.name = "#{PROJECT_NAME}-VM"
       vb.cpus = 2
       vb.memory = 4096
     end
 
-    vm_config.vm.hostname = project_name
+    vm_config.vm.hostname = PROJECT_NAME
 
     vm_config.ssh.insert_key = false
 
     vm_config.vm.synced_folder '.', '/vagrant', disabled: true
-    vm_config.vm.synced_folder '.', "/var/#{project_name}", create: true
+    vm_config.vm.synced_folder '.', "/var/#{PROJECT_NAME}", create: true
 
     vm_config.vm.provision 'docker'
 
