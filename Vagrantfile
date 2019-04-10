@@ -8,7 +8,7 @@ VAGRANTFILE_API_VERSION = '2'
 require 'yaml'
 
 host_project_dir = File.dirname(__FILE__)
-project_config = YAML.load_file("#{host_project_dir}/config.yml")
+project_config = YAML.load_file("#{host_project_dir}/.dev/config.yml")
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
@@ -64,7 +64,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vm_config.vm.synced_folder '.', '/vagrant', disabled: true
     vm_config.vm.synced_folder '.', PROJECT_DIR, create: true
 
-    # vm_config.vm.provision 'docker'
+    vm_config.vm.provision 'docker'
     vm_config.vm.provision 'bootstrap', type: 'shell', run: 'once', args: PROJECT_DIR, path: '.dev/provisioning/bootstrap.sh'
     vm_config.vm.provision 'git-config', type: 'shell', run: 'once', args: [PROJECT_DIR, GIT_USER_NAME, GIT_USER_EMAIL], path: '.dev/provisioning/git-config.sh'
     vm_config.vm.provision 'install-packages', type: 'shell', run: 'once', path: '.dev/provisioning/install-packages.sh'
