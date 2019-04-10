@@ -5,8 +5,8 @@ Vagrant.require_version '>= 2.1'
 
 VAGRANTFILE_API_VERSION = '2'
 
+# Read YAML config
 require 'yaml'
-
 host_project_dir = File.dirname(__FILE__)
 project_config = YAML.load_file("#{host_project_dir}/.dev/config.yml")
 
@@ -50,7 +50,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define "#{PROJECT_NAME}-vagrant", primary: true do |vm_config|
     vm_config.vm.box = VAGRANT_BOX_NAME
     vm_config.vm.box_check_update = true
-    vm_config.vm.network 'private_network', ip: MACHINE_IP_ADDRESS
     vm_config.vm.provider 'virtualbox' do |vb|
       vb.name = "#{PROJECT_NAME}-VM"
       vb.cpus = 2
@@ -58,6 +57,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
 
     vm_config.vm.hostname = PROJECT_NAME
+    vm_config.vm.network 'private_network', ip: MACHINE_IP_ADDRESS
 
     vm_config.ssh.insert_key = false
 

@@ -13,7 +13,7 @@ To run just a separate provisioner:
 - Example: `vagrant provision --provision-with install-packages`
 
 ### Git config
-Git user name and email are configured in the `config.yml` file.
+Git user **name** and **email** are configured in the `config.yml` file.
 
 Default versions of `.gitignore` and `.gitattributes` files are auto-generated.
 
