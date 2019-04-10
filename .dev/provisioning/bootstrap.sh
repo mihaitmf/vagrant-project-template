@@ -20,8 +20,8 @@ cat > ${PROJECT_DIR}/.gitignore <<EOL
 /*.iml
 
 # Vagrant files
-/*.log
 /.vagrant/
+/*.log
 
 # Config YAML file
 /.dev/config.yml
