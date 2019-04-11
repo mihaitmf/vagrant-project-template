@@ -1,18 +1,13 @@
 ---
 
-- name: Install php, apache and common extensions
+- name: Install php and apache
   apt:
-    name:
-      - php
-      - php-xdebug
-      - php-curl
-      - php-xml
-      - php-soap
-      - php-bcmath
-      - php-mbstring
-      - php-apcu
-      - php-memcached
-      - php-mysqli
+    name: php
+    state: present
+
+- name: Install php extensions
+  apt:
+    name: "{{ php_extensions }}"
     state: present
 
 - name: Check if composer is installed
