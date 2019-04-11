@@ -2,6 +2,15 @@
 
 project_dir: /var/default-project-name
 
+common_packages:
+  - software-properties-common
+  - build-essential
+  - htop
+  - vim
+  - curl
+  - net-tools
+  - unzip
+
 php_extensions:
   - php-xdebug
   - php-curl

@@ -6,6 +6,11 @@
     dest: "{{ project_dir }}/"
     mode: 0644
 
+- name: Install git
+  apt:
+    name: git
+    state: present
+
 - name: Add .gitignore and .gitattributes files to the git staging area (ready for commit)
   shell: git add .gitignore .gitattributes
   args:

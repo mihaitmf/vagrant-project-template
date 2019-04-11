@@ -4,14 +4,7 @@
   become: true
   apt:
     update_cache: yes
-    name:
-      - software-properties-common
-      - build-essential
-      - htop
-      - vim
-      - curl
-      - net-tools
-      - unzip
+    name: "{{ common_packages }}"
     state: present
 
 - name: Copy shell script
