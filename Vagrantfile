@@ -71,11 +71,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         type: 'shell',
         run: 'once',
         args: [PROJECT_DIR, GIT_USER_NAME, GIT_USER_EMAIL],
-        path: '.dev/provisioning/bootstrap.sh'
+        path: '.dev/provisioning/shell/bootstrap.sh'
 
     vm_config.vm.provision 'install-packages',
         type: 'shell',
         run: 'once',
-        path: '.dev/provisioning/install-packages.sh'
+        path: '.dev/provisioning/shell/install-packages.sh'
   end
 end
