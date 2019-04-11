@@ -11,14 +11,14 @@
     state: present
 
 - name: Check if composer is installed
-  shell: type composer >/dev/null 2>&1
+  shell: type composer
   register: composer_result
   ignore_errors: yes
 
 - name: Install composer
   shell: |
     curl -sS https://getcomposer.org/installer -o composer-setup.php \
-    && php composer-setup.php --install-dir=/usr/local/bin --filename=composer \
+    && php composer-setup.php --install-dir=/usr/local/bin --filename=composer >/dev/null \
     && rm composer-setup.php
   when: composer_result.stdout.find('not found') != -1
 
