@@ -1,0 +1,23 @@
+---
+
+- name: Install php, apache and common extensions
+  apt:
+    name:
+      - php
+      - php-xdebug
+      - php-curl
+      - php-xml
+      - php-soap
+      - php-bcmath
+      - php-mbstring
+      - php-apcu
+      - php-memcached
+      - php-mysqli
+    state: present
+
+- name: Install composer
+  shell: |
+    curl -sS https://getcomposer.org/installer -o composer-setup.php \
+    && php composer-setup.php --install-dir=/usr/local/bin --filename=composer \
+    && rm composer-setup.php
+
