@@ -24,11 +24,15 @@ source /etc/profile.d/apache-maven.sh
 #echo $JAVA_HOME
 #echo $M2
 
-# Install php, apache and composer
+# Install php, apache and composer (if not exists)
 : '
 apt install -y php
 apt install -y php-xdebug php-curl php-xml php-soap php-bcmath php-mbstring php-apcu php-memcached php-mysqli
-curl -sS https://getcomposer.org/installer -o composer-setup.php && php composer-setup.php --install-dir=/usr/local/bin --filename=composer && rm composer-setup.php
+if ! type composer > /dev/null; then
+    curl -sS https://getcomposer.org/installer -o composer-setup.php \
+    && php composer-setup.php --install-dir=/usr/local/bin --filename=composer \
+    && rm composer-setup.php
+fi
 '
 #php -v
 #systemctl status apache2
