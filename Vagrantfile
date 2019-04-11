@@ -67,23 +67,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # vm_config.vm.provision 'docker'
 
     # Run shell scripts to provision the vagrant machine
-    vm_config.vm.provision 'set-working-dir',
-        type: 'shell',
-        run: 'once',
-        args: PROJECT_DIR,
-        path: '.dev/provisioning/set-working-dir.sh'
-
-    vm_config.vm.provision 'git-config',
+    vm_config.vm.provision 'bootstrap',
         type: 'shell',
         run: 'once',
         args: [PROJECT_DIR, GIT_USER_NAME, GIT_USER_EMAIL],
-        path: '.dev/provisioning/git-config.sh'
-
-    vm_config.vm.provision 'git-files',
-        type: 'shell',
-        run: 'once',
-        args: PROJECT_DIR,
-        path: '.dev/provisioning/git-files.sh'
+        path: '.dev/provisioning/bootstrap.sh'
 
     vm_config.vm.provision 'install-packages',
         type: 'shell',
