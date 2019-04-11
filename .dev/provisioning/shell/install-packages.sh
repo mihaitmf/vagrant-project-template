@@ -15,7 +15,7 @@ export M2_HOME=/usr/local/apache-maven-3.5.4
 export MAVEN_HOME=\$M2_HOME
 export M2=\$M2_HOME/bin
 export MAVEN_OPTS="-Xms256m -Xmx512m"
-export PATH=\$M2:$PATH
+export PATH=\$M2:\$PATH
 EOL
 source /etc/profile.d/apache-maven.sh
 '
