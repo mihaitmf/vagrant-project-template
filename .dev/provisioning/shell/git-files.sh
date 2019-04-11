@@ -24,8 +24,8 @@ cat > ${PROJECT_DIR}/.gitignore <<EOL
 /.dev/config.yml
 EOL
 
-apt update
-apt install -y git
+apt update >/dev/null
+apt install -y git >/dev/null
 
 # Add .gitattributes and .gitignore files to staging area
 (cd ${PROJECT_DIR}; git add .gitignore .gitattributes)

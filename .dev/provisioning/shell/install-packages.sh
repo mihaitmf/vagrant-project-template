@@ -1,59 +1,23 @@
 #!/usr/bin/env bash
 
-# Install packages
-apt update
-apt install -y software-properties-common build-essential htop vim curl net-tools unzip
+PROJECT_DIR=${1}
+SHELL_SCRIPTS_DIR="${PROJECT_DIR}/${2}"
 
-# Install java and maven
-: '
-apt install -y openjdk-11-jdk maven
-cat > /etc/profile.d/apache-maven.sh <<EOL
-# Apache Maven Environment Variables
-# MAVEN_HOME for Maven 1 - M2_HOME for Maven 2
-export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
-export M2_HOME=/usr/local/apache-maven-3.5.4
-export MAVEN_HOME=\$M2_HOME
-export M2=\$M2_HOME/bin
-export MAVEN_OPTS="-Xms256m -Xmx512m"
-export PATH=\$M2:\$PATH
-EOL
-source /etc/profile.d/apache-maven.sh
-'
-#java --version
-#mvn -v
-#echo $JAVA_HOME
-#echo $M2
+echo "Install commonly used packages"
+apt update >/dev/null
+apt install -y software-properties-common build-essential htop vim curl net-tools unzip >/dev/null
 
-# Install php, apache and composer (if not exists)
-: '
-apt install -y php
-apt install -y php-xdebug php-curl php-xml php-soap php-bcmath php-mbstring php-apcu php-memcached php-mysqli
-if ! type composer > /dev/null; then
-    curl -sS https://getcomposer.org/installer -o composer-setup.php \
-    && php composer-setup.php --install-dir=/usr/local/bin --filename=composer \
-    && rm composer-setup.php
-fi
-'
-#php -v
-#systemctl status apache2
-#composer -V
+echo "Running install-java.sh"
+${SHELL_SCRIPTS_DIR}/install-java.sh
 
-# Install node.js and npm
-#apt install -y nodejs npm
-#node -v
-#npm -v
+echo "Running install-php.sh"
+${SHELL_SCRIPTS_DIR}/install-php.sh
 
-# Install python and pip
-#apt install -y python python3 python-pip
-#python -V
-#python3 -V
-#pip -V
+echo "Running install-node.sh"
+${SHELL_SCRIPTS_DIR}/install-node.sh
 
-# Install terraform
-#if ! type terraform > /dev/null; then
-#    wget https://releases.hashicorp.com/terraform/0.11.13/terraform_0.11.13_linux_amd64.zip
-#    unzip terraform_0.11.13_linux_amd64.zip
-#    mv terraform /usr/local/bin/
-#    rm -f terraform_0.11.13_linux_amd64.zip
-#fi
-#terraform --version
+echo "Running install-python.sh"
+${SHELL_SCRIPTS_DIR}/install-python.sh
+
+echo "Running install-terraform.sh"
+${SHELL_SCRIPTS_DIR}/install-terraform.sh
