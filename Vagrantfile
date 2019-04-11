@@ -67,6 +67,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vm_config.vm.synced_folder '.', '/vagrant', disabled: true
     vm_config.vm.synced_folder '.', PROJECT_DIR, create: true
 
+
     # Run vagrant provisioners
     case DEFAULT_PROVISIONING
     when "shell"
@@ -74,12 +75,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       vm_config.vm.provision 'bootstrap',
           type: 'shell',
           run: 'once',
-          args: [PROJECT_DIR, SHELL_PROVISIONING_RELATIVE_DIR, GIT_USER_NAME, GIT_USER_EMAIL],
+          args: ["#{PROJECT_DIR}", "#{SHELL_PROVISIONING_RELATIVE_DIR}", "#{GIT_USER_NAME}", "#{GIT_USER_EMAIL}"],
           path: "#{SHELL_PROVISIONING_RELATIVE_DIR}/bootstrap.sh"
 
       vm_config.vm.provision 'install-packages',
           type: 'shell',
           run: 'once',
+          args: ["#{PROJECT_DIR}", "#{SHELL_PROVISIONING_RELATIVE_DIR}"],
           path: "#{SHELL_PROVISIONING_RELATIVE_DIR}/install-packages.sh"
 
     when "ansible"
