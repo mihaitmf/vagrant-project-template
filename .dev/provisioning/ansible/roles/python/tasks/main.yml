@@ -1,0 +1,9 @@
+---
+
+- name: Install python and pip
+  apt:
+    name:
+      - python
+      - python3
+      - python-pip
+    state: present
