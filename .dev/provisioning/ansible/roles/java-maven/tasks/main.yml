@@ -1,0 +1,20 @@
+---
+
+- name: Install java and maven
+  apt:
+    name:
+      - openjdk-11-jdk
+      - maven
+    state: present
+
+- name: Copy environment variables configuration file
+  copy:
+    src: "apache-maven.sh"
+    dest: "/etc/profile.d/apache-maven.sh"
+    mode: 0644
+
+- name: Load environment variables
+  shell: source /etc/profile.d/apache-maven.sh
+  args:
+    executable: /bin/bash
+
