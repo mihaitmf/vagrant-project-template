@@ -1,0 +1,9 @@
+---
+
+- name: Bootstrap
+  hosts: all
+  become: true
+  roles:
+    - git-config
+    - git-files
+    - commons

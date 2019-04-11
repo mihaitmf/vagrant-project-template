@@ -1,0 +1,16 @@
+---
+
+- name: Install git
+  apt:
+    name: git
+    state: present
+
+- name: Set git user name and email
+  git_config:
+    name: "{{ item.key }}"
+    value: "{{ item.value }}"
+    scope: local
+    repo: .
+  with_items:
+    - { key: user.name, value: "{{ git.name }}" }
+    - { key: user.email, value: "{{ git.email }}" }

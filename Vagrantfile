@@ -86,7 +86,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       # Run Ansible inside the vagrant machine
       config.vm.provision 'bootstrap', run: 'once', type: 'ansible_local' do |ansible|
         # ansible.verbose = true # Use '-vvv' for more verbosity
-        ansible.provisioning_path = ANSIBLE_PROVISIONING_RELATIVE_DIR
+        ansible.provisioning_path = "#{PROJECT_DIR}/#{ANSIBLE_PROVISIONING_RELATIVE_DIR}"
         ansible.playbook = 'playbook-bootstrap.yml'
         ansible.extra_vars = {
             project_dir: PROJECT_DIR,

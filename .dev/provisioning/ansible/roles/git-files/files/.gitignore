@@ -1,0 +1,10 @@
+# IntelliJ project files
+/.idea/
+/*.iml
+
+# Vagrant files
+/.vagrant/
+/*.log
+
+# Config YAML file
+/.dev/config.yml
