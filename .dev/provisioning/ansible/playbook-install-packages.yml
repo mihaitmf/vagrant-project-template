@@ -4,8 +4,8 @@
   hosts: all
   become: true
   roles:
-    - java
-    - php
-    - node
-    - python
-    - terraform
+#    - java
+#    - php
+#    - node
+#    - python
+#    - terraform
