@@ -1,0 +1,15 @@
+---
+
+- name: Check if terraform is installed
+  shell: type terraform >/dev/null 2>&1
+  register: terraform_result
+  ignore_errors: yes
+
+- name: Install terraform
+  shell: |
+    wget https://releases.hashicorp.com/terraform/0.11.13/terraform_0.11.13_linux_amd64.zip \
+    && unzip terraform_0.11.13_linux_amd64.zip \
+    && mv terraform /usr/local/bin/ \
+    && rm -f terraform_0.11.13_linux_amd64.zip
+  when: terraform_result.stdout.find('not found') != -1
+
