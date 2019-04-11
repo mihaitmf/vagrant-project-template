@@ -2,9 +2,6 @@
 
 PROJECT_DIR=${1}
 
-# Set working directory after vagrant ssh
-echo "cd $PROJECT_DIR" >> /home/vagrant/.bashrc
-
 # Add .gitattributes file
 : '
 When text=auto conversion is enabled in a cross-platform project using push and pull to a central repository, the text
