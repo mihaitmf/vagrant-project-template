@@ -73,17 +73,17 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         args: PROJECT_DIR,
         path: '.dev/provisioning/set-working-dir.sh'
 
-    vm_config.vm.provision 'git-files',
-        type: 'shell',
-        run: 'once',
-        args: PROJECT_DIR,
-        path: '.dev/provisioning/git-files.sh'
-
     vm_config.vm.provision 'git-config',
         type: 'shell',
         run: 'once',
         args: [PROJECT_DIR, GIT_USER_NAME, GIT_USER_EMAIL],
         path: '.dev/provisioning/git-config.sh'
+
+    vm_config.vm.provision 'git-files',
+        type: 'shell',
+        run: 'once',
+        args: PROJECT_DIR,
+        path: '.dev/provisioning/git-files.sh'
 
     vm_config.vm.provision 'install-packages',
         type: 'shell',
