@@ -2,7 +2,6 @@
 
 # Install packages
 apt update
-apt upgrade -y
 apt install -y software-properties-common build-essential htop vim curl net-tools unzip
 
 # Install java and maven
