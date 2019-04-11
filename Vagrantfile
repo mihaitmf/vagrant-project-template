@@ -17,6 +17,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   PROJECT_DIR = project_config['vagrant']['project-root-dir'] + PROJECT_NAME
   MACHINE_IP_ADDRESS = project_config['vagrant']['machine-ip-address']
   VAGRANT_BOX_NAME = project_config['vagrant']['box-name']
+  DEFAULT_PROVISIONING = project_config['vagrant']['provisioning']['default']
+  SHELL_PROVISIONING_RELATIVE_DIR = project_config['vagrant']['provisioning']['shell-dir-relative-path']
+  ANSIBLE_PROVISIONING_RELATIVE_DIR = project_config['vagrant']['provisioning']['ansible-dir-relative-path']
   GIT_USER_NAME = project_config['git']['name']
   GIT_USER_EMAIL = project_config['git']['email']
 
@@ -64,18 +67,47 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vm_config.vm.synced_folder '.', '/vagrant', disabled: true
     vm_config.vm.synced_folder '.', PROJECT_DIR, create: true
 
+    # Run vagrant provisioners
+    case DEFAULT_PROVISIONING
+    when "shell"
+      # Run shell scripts to provision the vagrant machine
+      vm_config.vm.provision 'bootstrap',
+          type: 'shell',
+          run: 'once',
+          args: [PROJECT_DIR, SHELL_PROVISIONING_RELATIVE_DIR, GIT_USER_NAME, GIT_USER_EMAIL],
+          path: "#{SHELL_PROVISIONING_RELATIVE_DIR}/bootstrap.sh"
+
+      vm_config.vm.provision 'install-packages',
+          type: 'shell',
+          run: 'once',
+          path: "#{SHELL_PROVISIONING_RELATIVE_DIR}/install-packages.sh"
+
+    when "ansible"
+      # Run Ansible inside the vagrant machine
+      config.vm.provision 'bootstrap', run: 'once', type: 'ansible_local' do |ansible|
+        # ansible.verbose = true # Use '-vvv' for more verbosity
+        ansible.provisioning_path = ANSIBLE_PROVISIONING_RELATIVE_DIR
+        ansible.playbook = 'playbook-bootstrap.yml'
+        ansible.extra_vars = {
+            project_dir: PROJECT_DIR,
+            git: {
+                name: GIT_USER_NAME,
+                email: GIT_USER_EMAIL
+            }
+        }
+      end
+
+      config.vm.provision 'install-packages', run: 'once', type: 'ansible_local' do |ansible|
+        # ansible.verbose = true # Use '-vvv' for more verbosity
+        ansible.provisioning_path = ANSIBLE_PROVISIONING_RELATIVE_DIR
+        ansible.playbook = 'playbook-install-packages.yml'
+      end
+
+    else
+      puts "No vagrant provisioner found for default value #{DEFAULT_PROVISIONING}"
+    end
+
     # vm_config.vm.provision 'docker'
 
-    # Run shell scripts to provision the vagrant machine
-    vm_config.vm.provision 'bootstrap',
-        type: 'shell',
-        run: 'once',
-        args: [PROJECT_DIR, GIT_USER_NAME, GIT_USER_EMAIL],
-        path: '.dev/provisioning/shell/bootstrap.sh'
-
-    vm_config.vm.provision 'install-packages',
-        type: 'shell',
-        run: 'once',
-        path: '.dev/provisioning/shell/install-packages.sh'
   end
 end

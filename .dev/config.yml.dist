@@ -3,6 +3,10 @@ vagrant:
   project-root-dir: /var/
   machine-ip-address: 192.168.89.103
   box-name: ubuntu/bionic64
+  provisioning:
+    default: shell # can be shell or ansible
+    shell-dir-relative-path: .dev/provisioning/shell/
+    ansible-dir-relative-path: .dev/provisioning/ansible/
 
 git:
   name: Firstname Lastname
