@@ -11,8 +11,9 @@
     state: present
 
 - name: Check if composer is installed
-  command: composer
+  shell: type composer >/dev/null 2>&1
   register: composer_result
+  ignore_errors: yes
 
 - name: Install composer
   shell: |
