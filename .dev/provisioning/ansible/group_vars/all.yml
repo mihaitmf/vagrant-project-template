@@ -1,3 +1,14 @@
 ---
 
-project-dir: /var/default-project-name
+project_dir: /var/default-project-name
+
+php_extensions:
+  - php-xdebug
+  - php-curl
+  - php-xml
+  - php-soap
+  - php-bcmath
+  - php-mbstring
+  - php-apcu
+  - php-memcached
+  - php-mysqli
