@@ -43,4 +43,8 @@ echo "Running install-aws-cli.sh"
 ${SHELL_SCRIPTS_DIR}/install-aws-cli.sh ${SHELL_SCRIPTS_DIR}
 test $? -ne 0 && exit 1 # If last command returned error (non zero exit code), exit this script with error also
 
+echo "Running install-ngrok.sh"
+${SHELL_SCRIPTS_DIR}/install-ngrok.sh ${SHELL_SCRIPTS_DIR}
+test $? -ne 0 && exit 1 # If last command returned error (non zero exit code), exit this script with error also
+
 exit 0
