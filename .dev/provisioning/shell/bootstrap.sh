@@ -13,3 +13,6 @@ ${SHELL_SCRIPTS_DIR}/git-files.sh ${PROJECT_DIR}
 
 echo "Running set-working-dir.sh"
 ${SHELL_SCRIPTS_DIR}/set-working-dir.sh ${PROJECT_DIR}
+
+echo "Add vagrant user to the docker group so that docker commands do not require sudo"
+usermod -a -G docker vagrant

@@ -67,6 +67,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vm_config.vm.synced_folder '.', '/vagrant', disabled: true
     vm_config.vm.synced_folder '.', PROJECT_DIR, create: true
 
+    vm_config.vm.provision 'docker'
 
     # Run vagrant provisioners
     case DEFAULT_PROVISIONING
@@ -108,8 +109,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     else
       puts "No vagrant provisioner found for default value #{DEFAULT_PROVISIONING}"
     end
-
-    # vm_config.vm.provision 'docker'
 
   end
 end
