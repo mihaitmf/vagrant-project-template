@@ -19,11 +19,11 @@ echo "Installing ${BINARY_NAME}..."
 wget ${DOWNLOAD_URL} -O ${ARCHIVE_FILE_NAME} >/dev/null 2>&1
 
 # Extract
-rm -r ${SOURCES_DIR}
+rm -r ${SOURCES_DIR} >/dev/null 2>&1
 mkdir ${SOURCES_DIR}
 
 if [[ ${ARCHIVE_FILE_NAME: -4} ==  ".zip" ]]; then
-    unzip ${ARCHIVE_FILE_NAME} ${SOURCES_DIR} >/dev/null
+    unzip ${ARCHIVE_FILE_NAME} -d ${SOURCES_DIR} >/dev/null
 elif [[ ${ARCHIVE_FILE_NAME: -7} ==  ".tar.gz" ]]; then
     tar -zxvf ${ARCHIVE_FILE_NAME} -C ${SOURCES_DIR} >/dev/null
 else
