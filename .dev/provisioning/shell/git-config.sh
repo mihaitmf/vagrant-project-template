@@ -18,3 +18,5 @@ fi
 
 # Config git user
 (cd ${PROJECT_DIR}; git config user.name "${GIT_USER_NAME}" && git config user.email ${GIT_USER_EMAIL})
+
+exit 0

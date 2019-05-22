@@ -24,8 +24,19 @@ cat > ${PROJECT_DIR}/.gitignore <<EOL
 /.dev/config.yml
 EOL
 
-apt update >/dev/null
-apt install -y git >/dev/null
+# Install git if not exists
+if ! type git >/dev/null 2>&1; then
+    apt update >/dev/null
+    apt install -y git >/dev/null
+
+    # Check installation succeeded
+    if ! type git >/dev/null 2>&1; then
+        echo "ERROR installing git"
+        exit 1
+    fi
+fi
 
 # Add .gitattributes and .gitignore files to staging area
 (cd ${PROJECT_DIR}; git add .gitignore .gitattributes)
+
+exit 0
