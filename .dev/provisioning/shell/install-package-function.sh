@@ -4,7 +4,8 @@ BINARY_NAME=${1}
 DOWNLOAD_URL=${2}
 ARCHIVE_FILE_NAME=${3}
 SOURCES_DIR=${4}
-STARTUP_CONFIG_FILE=${5}
+SOURCES_BIN_DIR=${5}
+STARTUP_CONFIG_FILE=${6}
 
 # If package already exists, skip installation
 if type ${BINARY_NAME} >/dev/null 2>&1; then
@@ -21,9 +22,9 @@ wget ${DOWNLOAD_URL} -O ${ARCHIVE_FILE_NAME} >/dev/null 2>&1
 rm -r ${SOURCES_DIR}
 mkdir ${SOURCES_DIR}
 
-if [[ ${ARCHIVE_FILE_NAME: -4} -eq  ".zip" ]]; then
-    unzip ${ARCHIVE_FILE_NAME} -d ${SOURCES_DIR} >/dev/null
-elif [[ ${ARCHIVE_FILE_NAME: -7} -eq  ".tar.gz" ]]; then
+if [[ ${ARCHIVE_FILE_NAME: -4} ==  ".zip" ]]; then
+    unzip ${ARCHIVE_FILE_NAME} ${SOURCES_DIR} >/dev/null
+elif [[ ${ARCHIVE_FILE_NAME: -7} ==  ".tar.gz" ]]; then
     tar -zxvf ${ARCHIVE_FILE_NAME} -C ${SOURCES_DIR} >/dev/null
 else
     echo "Error! Unknown format for archive file ${ARCHIVE_FILE_NAME}"
@@ -32,9 +33,9 @@ fi
 
 rm -f ${ARCHIVE_FILE_NAME}
 
-# Add binary to $PATH and setup environment variables
+# Add binary to $PATH
 cat > ${STARTUP_CONFIG_FILE} <<EOL
-export PATH=\$PATH:${SOURCES_DIR}
+export PATH=\$PATH:${SOURCES_BIN_DIR}
 EOL
 
 chmod a+x ${STARTUP_CONFIG_FILE}

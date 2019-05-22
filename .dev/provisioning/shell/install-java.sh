@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-JAVA_VERSION=8
-JAVA_HOME_DIR="/usr/lib/jvm/java-${JAVA_VERSION}-openjdk-amd64"
+VERSION=8
+JAVA_HOME_DIR="/usr/lib/jvm/java-${VERSION}-openjdk-amd64"
 STARTUP_CONFIG_FILE="/etc/profile.d/java.sh"
 
 # Install java
-apt install -y openjdk-${JAVA_VERSION}-jdk >/dev/null
+apt install -y openjdk-${VERSION}-jdk >/dev/null
 
 # Setup environment variables
 cat > ${STARTUP_CONFIG_FILE} <<EOL
