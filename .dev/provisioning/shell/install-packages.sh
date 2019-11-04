@@ -46,5 +46,9 @@ apt install -y software-properties-common build-essential htop vim curl net-tool
 #echo "Running install-ngrok.sh"
 #${SHELL_SCRIPTS_DIR}/install-ngrok.sh
 #test $? -ne 0 && exit 1 # If last command returned error (non zero exit code), exit this script with error also
+#
+#echo "Running install-kubectl.sh"
+#${SHELL_SCRIPTS_DIR}/install-kubectl.sh
+#test $? -ne 0 && exit 1 # If last command returned error (non zero exit code), exit this script with error also
 
 exit 0
