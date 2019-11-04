@@ -7,7 +7,7 @@ VERSION="0.11.14"
 BINARY_NAME="terraform"
 DOWNLOAD_URL="https://releases.hashicorp.com/terraform/${VERSION}/terraform_${VERSION}_linux_amd64.zip"
 ARCHIVE_FILE_NAME="${BINARY_NAME}.zip"
-SOURCES_DIR="${BINARY_NAME}"
+SOURCES_DIR="/opt/${BINARY_NAME}"
 SOURCES_BIN_DIR="${SOURCES_DIR}"
 STARTUP_CONFIG_FILE="/etc/profile.d/${BINARY_NAME}.sh"
 
