@@ -19,7 +19,7 @@ add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(
 apt update
 
 # Finally, install Docker:
-apt install docker-ce
+apt install -y docker-ce
 
 # Check installation
 if ! systemctl is-active --quiet docker; then
