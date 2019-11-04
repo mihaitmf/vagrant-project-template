@@ -3,8 +3,9 @@
 SHELL_SCRIPTS_DIR="${1}"
 
 # Install terraform if not exists
+VERSION="0.11.14"
 BINARY_NAME="terraform"
-DOWNLOAD_URL="https://releases.hashicorp.com/terraform/0.11.14/terraform_0.11.14_linux_amd64.zip"
+DOWNLOAD_URL="https://releases.hashicorp.com/terraform/${VERSION}/terraform_${VERSION}_linux_amd64.zip"
 ARCHIVE_FILE_NAME="${BINARY_NAME}.zip"
 SOURCES_DIR="${BINARY_NAME}"
 SOURCES_BIN_DIR="${SOURCES_DIR}"
