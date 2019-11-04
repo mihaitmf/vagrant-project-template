@@ -4,6 +4,7 @@ SHELL_SCRIPTS_DIR=$(dirname "$(realpath $0)")
 
 # Install composer if not exists
 BINARY_NAME="composer"
+DOWNLOAD_URL="https://getcomposer.org/installer"
 SOURCES_DIR="/opt/${BINARY_NAME}"
 SOURCES_BIN_DIR="${SOURCES_DIR}"
 
@@ -14,9 +15,10 @@ if type ${BINARY_NAME} >/dev/null 2>&1; then
 fi
 
 # Download
-sudo mkdir ${SOURCES_DIR}
-curl -sS https://getcomposer.org/installer -o composer-setup.php
-php composer-setup.php --install-dir=/opt/composer/ --filename=composer
+rm -r ${SOURCES_DIR} >/dev/null 2>&1
+mkdir ${SOURCES_DIR}
+curl -sS ${DOWNLOAD_URL} -o composer-setup.php
+php composer-setup.php --install-dir=${SOURCES_DIR} --filename=composer
 rm composer-setup.php
 
 # Add binary to $PATH
