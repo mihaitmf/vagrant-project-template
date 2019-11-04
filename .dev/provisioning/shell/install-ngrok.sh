@@ -18,12 +18,6 @@ ${SHELL_SCRIPTS_DIR}/functions/install-package-function.sh \
 
 test $? -ne 0 && exit 1 # If last command returned error (non zero exit code), exit this script with error also
 
-# Check installation
-if ! type ${BINARY_NAME} >/dev/null 2>&1; then
-    echo "Error installing ${BINARY_NAME}"
-    exit 1
-fi
-
 #ngrok version
 
 exit 0

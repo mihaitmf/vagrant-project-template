@@ -15,3 +15,5 @@ fi
 
 #node -v
 #npm -v
+
+exit 0

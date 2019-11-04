@@ -27,3 +27,5 @@ fi
 
 #java -version
 #echo ${JAVA_HOME}
+
+exit 0

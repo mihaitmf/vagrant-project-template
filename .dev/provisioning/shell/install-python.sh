@@ -20,3 +20,5 @@ fi
 #python -V
 #python3 -V
 #pip -V
+
+exit 0

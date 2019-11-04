@@ -41,3 +41,5 @@ fi
 
 #mvn -v
 #echo ${M2_HOME}
+
+exit 0

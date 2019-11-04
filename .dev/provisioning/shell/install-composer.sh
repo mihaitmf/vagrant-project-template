@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 
+SHELL_SCRIPTS_DIR=$(dirname "$(realpath $0)")
+
 # Install composer if not exists
 BINARY_NAME="composer"
 SOURCES_DIR="/opt/${BINARY_NAME}"
 SOURCES_BIN_DIR="${SOURCES_DIR}"
-STARTUP_CONFIG_FILE="/etc/profile.d/${BINARY_NAME}.sh"
 
 # If package already exists, skip installation
 if type ${BINARY_NAME} >/dev/null 2>&1; then
@@ -19,19 +20,9 @@ php composer-setup.php --install-dir=/opt/composer/ --filename=composer
 rm composer-setup.php
 
 # Add binary to $PATH
-cat > ${STARTUP_CONFIG_FILE} <<EOL
-export PATH=\$PATH:${SOURCES_BIN_DIR}
-EOL
-chmod a+x ${STARTUP_CONFIG_FILE}
-
-# Load environment variables
-source ${STARTUP_CONFIG_FILE}
-
-# Check installation succeeded
-if ! type ${BINARY_NAME} >/dev/null 2>&1; then
-    echo "ERROR installing ${BINARY_NAME}"
-    exit 1
-fi
+${SHELL_SCRIPTS_DIR}/functions/add-binary-to-path-function.sh \
+    ${BINARY_NAME} \
+    ${SOURCES_BIN_DIR}
 
 test $? -ne 0 && exit 1 # If last command returned error (non zero exit code), exit this script with error also
 

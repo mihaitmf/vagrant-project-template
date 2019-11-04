@@ -18,3 +18,5 @@ fi
 
 #php -v
 #systemctl status apache2
+
+exit 0
