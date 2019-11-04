@@ -5,8 +5,8 @@ vagrant:
   box-name: ubuntu/bionic64
   provisioning:
     default: shell # can be shell or ansible
-    shell-dir-relative-path: .dev/provisioning/shell/
-    ansible-dir-relative-path: .dev/provisioning/ansible/
+    shell-dir-relative-path: .dev/provisioning/shell
+    ansible-dir-relative-path: .dev/provisioning/ansible
 
 git:
   name: Firstname Lastname
