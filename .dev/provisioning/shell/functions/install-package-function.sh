@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 
+FUNCTIONS_DIR=$(dirname $(realpath $0))
+
 BINARY_NAME=${1}
 DOWNLOAD_URL=${2}
 ARCHIVE_FILE_NAME=${3}
 SOURCES_DIR=${4}
 SOURCES_BIN_DIR=${5}
-STARTUP_CONFIG_FILE=${6}
 
 # If package already exists, skip installation
 if type ${BINARY_NAME} >/dev/null 2>&1; then
@@ -34,21 +35,10 @@ fi
 rm -f ${ARCHIVE_FILE_NAME}
 
 # Add binary to $PATH
-cat > ${STARTUP_CONFIG_FILE} <<EOL
-export PATH=\$PATH:${SOURCES_BIN_DIR}
-EOL
+${FUNCTIONS_DIR}/add-binary-to-path-function.sh \
+    ${BINARY_NAME} \
+    ${SOURCES_BIN_DIR}
 
-chmod a+x ${STARTUP_CONFIG_FILE}
-
-# Load environment variables
-source ${STARTUP_CONFIG_FILE}
-
-# Check installation succeeded
-if ! type ${BINARY_NAME} >/dev/null 2>&1; then
-    echo "ERROR installing ${BINARY_NAME}"
-    exit 1
-fi
-
-echo "DONE"
+test $? -ne 0 && exit 1 # If last command returned error (non zero exit code), exit this script with error also
 
 exit 0

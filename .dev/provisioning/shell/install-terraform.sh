@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-SHELL_SCRIPTS_DIR="${1}"
+SHELL_SCRIPTS_DIR=$(dirname "$(realpath $0)")
 
 # Install terraform if not exists
 VERSION="0.11.14"
@@ -9,15 +9,13 @@ DOWNLOAD_URL="https://releases.hashicorp.com/terraform/${VERSION}/terraform_${VE
 ARCHIVE_FILE_NAME="${BINARY_NAME}.zip"
 SOURCES_DIR="/opt/${BINARY_NAME}"
 SOURCES_BIN_DIR="${SOURCES_DIR}"
-STARTUP_CONFIG_FILE="/etc/profile.d/${BINARY_NAME}.sh"
 
-${SHELL_SCRIPTS_DIR}/install-package-function.sh \
+${SHELL_SCRIPTS_DIR}/functions/install-package-function.sh \
     ${BINARY_NAME} \
     ${DOWNLOAD_URL} \
     ${ARCHIVE_FILE_NAME} \
     ${SOURCES_DIR} \
-    ${SOURCES_BIN_DIR} \
-    ${STARTUP_CONFIG_FILE}
+    ${SOURCES_BIN_DIR}
 
 test $? -ne 0 && exit 1 # If last command returned error (non zero exit code), exit this script with error also
 

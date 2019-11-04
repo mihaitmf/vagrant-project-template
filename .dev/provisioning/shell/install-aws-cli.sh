@@ -10,3 +10,5 @@ if ! type aws >/dev/null 2>&1; then
 fi
 
 #aws help
+
+exit 0

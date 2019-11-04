@@ -1,23 +1,22 @@
 #!/usr/bin/env bash
 
-SHELL_SCRIPTS_DIR="${1}"
+SHELL_SCRIPTS_DIR=$(dirname "$(realpath $0)")
 
 # Install maven if not exists
-VERSION="3.6.1"
+VERSION="3.6.2"
 BINARY_NAME="mvn"
-DOWNLOAD_URL="http://mirrors.m247.ro/apache/maven/maven-3/${VERSION}/binaries/apache-maven-${VERSION}-bin.tar.gz"
+DOWNLOAD_URL="http://mirrors.hostingromania.ro/apache.org/maven/maven-3/${VERSION}/binaries/apache-maven-${VERSION}-bin.tar.gz"
 ARCHIVE_FILE_NAME="apache-maven.tar.gz"
 SOURCES_DIR="/opt/apache-maven"
 SOURCES_BIN_DIR="${SOURCES_DIR}/apache-maven-${VERSION}/bin"
-STARTUP_CONFIG_FILE="/etc/profile.d/apache-maven.sh"
+STARTUP_CONFIG_FILE="/etc/profile.d/mvn.sh"
 
-${SHELL_SCRIPTS_DIR}/install-package-function.sh \
+${SHELL_SCRIPTS_DIR}/functions/install-package-function.sh \
     ${BINARY_NAME} \
     ${DOWNLOAD_URL} \
     ${ARCHIVE_FILE_NAME} \
     ${SOURCES_DIR} \
-    ${SOURCES_BIN_DIR} \
-    ${STARTUP_CONFIG_FILE}
+    ${SOURCES_BIN_DIR}
 
 test $? -ne 0 && exit 1 # If last command returned error (non zero exit code), exit this script with error also
 

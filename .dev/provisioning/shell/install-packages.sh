@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-PROJECT_DIR=${1}
-SHELL_SCRIPTS_DIR="${PROJECT_DIR}/${2}"
+SHELL_SCRIPTS_DIR=$(dirname "$(realpath $0)")
 
 echo "Install commonly used packages"
 apt update >/dev/null
@@ -12,11 +11,11 @@ apt install -y software-properties-common build-essential htop vim curl net-tool
 #test $? -ne 0 && exit 1 # If last command returned error (non zero exit code), exit this script with error also
 #
 #echo "Running install-maven.sh"
-#${SHELL_SCRIPTS_DIR}/install-maven.sh ${SHELL_SCRIPTS_DIR}
+#${SHELL_SCRIPTS_DIR}/install-maven.sh
 #test $? -ne 0 && exit 1 # If last command returned error (non zero exit code), exit this script with error also
 #
 #echo "Running install-gradle.sh"
-#${SHELL_SCRIPTS_DIR}/install-gradle.sh ${SHELL_SCRIPTS_DIR}
+#${SHELL_SCRIPTS_DIR}/install-gradle.sh
 #test $? -ne 0 && exit 1 # If last command returned error (non zero exit code), exit this script with error also
 #
 #echo "Running install-php.sh"
@@ -36,15 +35,15 @@ apt install -y software-properties-common build-essential htop vim curl net-tool
 #test $? -ne 0 && exit 1 # If last command returned error (non zero exit code), exit this script with error also
 #
 #echo "Running install-terraform.sh"
-#${SHELL_SCRIPTS_DIR}/install-terraform.sh ${SHELL_SCRIPTS_DIR}
+#${SHELL_SCRIPTS_DIR}/install-terraform.sh
 #test $? -ne 0 && exit 1 # If last command returned error (non zero exit code), exit this script with error also
 #
 #echo "Running install-aws-cli.sh"
-#${SHELL_SCRIPTS_DIR}/install-aws-cli.sh ${SHELL_SCRIPTS_DIR}
+#${SHELL_SCRIPTS_DIR}/install-aws-cli.sh
 #test $? -ne 0 && exit 1 # If last command returned error (non zero exit code), exit this script with error also
 #
 #echo "Running install-ngrok.sh"
-#${SHELL_SCRIPTS_DIR}/install-ngrok.sh ${SHELL_SCRIPTS_DIR}
+#${SHELL_SCRIPTS_DIR}/install-ngrok.sh
 #test $? -ne 0 && exit 1 # If last command returned error (non zero exit code), exit this script with error also
 
 exit 0
