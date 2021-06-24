@@ -7,4 +7,4 @@ docker run --rm \
     --volume ${PROJECT_DIR}:${PROJECT_DIR} \
     --env "COMPOSER_CACHE_DIR=$PROJECT_DIR/.composer-cache" \
     --user "$(id -u vagrant)":"$(id -g vagrant)" \
-    composer:latest "$@"
+    composer:2 "$@"

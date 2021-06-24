@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 
-CLI_PHP_VERSION=8.0.5
-IMAGE_NAME=php:${CLI_PHP_VERSION}
-#IMAGE_NAME=vagrant-project-template/php:latest
+IMAGE_NAME=vagrant-project-template/php:latest
+#CLI_PHP_VERSION=8.0.5
+#IMAGE_NAME=php:${CLI_PHP_VERSION}
 
 # needed to sync working directory
-HOST_WORK_DIR=$(realpath $(dirname $(readlink -f "$0"))/../../..)
+HOST_WORK_DIR=$(realpath "$(dirname "$(readlink -f "$0")")/../../../..")
 CONTAINER_WORK_DIR=${HOST_WORK_DIR}
+CONFIG_DIR=${HOST_WORK_DIR}/.dev/docker/run/php/config
 
 # needed to sync php config file
-CONFIG_DIR=${HOST_WORK_DIR}/.dev/docker/run/config
 HOST_CONFIG_FILE_PATH=${CONFIG_DIR}/custom-php.ini
 CONTAINER_CONFIG_FILE_PATH=/usr/local/etc/php/conf.d/custom-php.ini
 
