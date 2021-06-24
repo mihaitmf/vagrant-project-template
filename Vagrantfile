@@ -83,6 +83,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
           args: ["#{PROJECT_DIR}", "#{SHELL_PROVISIONING_RELATIVE_DIR}"],
           path: "#{SHELL_PROVISIONING_RELATIVE_DIR}/install-packages.sh"
 
+      vm_config.vm.provision 'provision-with-docker',
+          type: 'shell',
+          run: 'once',
+          args: ["#{PROJECT_DIR}"],
+          path: "#{SHELL_PROVISIONING_RELATIVE_DIR}/docker/provision-with-docker.sh"
+
     when "ansible"
       # Run Ansible inside the vagrant machine
       config.vm.provision 'bootstrap', run: 'once', type: 'ansible_local' do |ansible|
