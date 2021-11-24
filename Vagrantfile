@@ -49,6 +49,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vbguest.auto_update = false
   end
 
+  # It works also to define the vagrant machine name like this and then use the "config" variable instead of "vm_config"
+  # config.vm.define PROJECT_NAME
+
   # Configure vagrant machine
   config.vm.define "#{PROJECT_NAME}-vagrant", primary: true do |vm_config|
     vm_config.vm.box = VAGRANT_BOX_NAME
